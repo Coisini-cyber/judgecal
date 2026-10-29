@@ -44,7 +44,7 @@ def cmd_card(args: argparse.Namespace) -> int:
     grade = report.verdict.grade
     if args.min_grade:
         floor = args.min_grade.lower()
-        if GRADE_ORDER[grade] < GRADE_ORDER[floor]:
+        if GRADE_ORDER[grade.lower()] < GRADE_ORDER[floor]:
             print(
                 "gate failed: grade %s is below the required %s"
                 % (grade.upper(), floor.upper()),

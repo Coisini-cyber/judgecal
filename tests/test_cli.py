@@ -103,6 +103,27 @@ class GateTest(unittest.TestCase):
         code, _, _ = run(["card", path, "--min-kappa", "0.9"])
         self.assertEqual(code, 0)
 
+    def test_min_grade_on_a_graded_dataset(self):
+        # The demo dataset grades C; ask for C, then for B.
+        with tempfile.TemporaryDirectory() as directory:
+            path = os.path.join(directory, "demo.jsonl")
+            run(["demo", "-o", path])
+            code, _, _ = run(["card", path, "--min-grade", "c"])
+            self.assertEqual(code, 0)
+            code, _, err = run(["card", path, "--min-grade", "b"])
+            self.assertEqual(code, 3)
+            self.assertIn("gate failed", err)
+
+    def test_grade_gate_accepts_the_upper_case_verdict(self):
+        # The card reports "C", the gate is asked for "c".
+        with tempfile.TemporaryDirectory() as directory:
+            path = os.path.join(directory, "demo.jsonl")
+            run(["demo", "-o", path])
+            code, out, _ = run(["card", path])
+            self.assertIn("## Verdict: C", out)
+            code, _, _ = run(["card", path, "--min-grade", "c"])
+            self.assertEqual(code, 0)
+
 
 class ProbesTest(unittest.TestCase):
     def test_probes_are_written_and_parseable(self):
