@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Judge reliability card</title>
+<style>
+:root { color-scheme: light; }
+body { margin: 0; padding: 40px 20px; background: #f6f8fa;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: #1f2328; line-height: 1.55; }
+main { max-width: 860px; margin: 0 auto; background: #fff; padding: 40px 44px;
+  border: 1px solid #d0d7de; border-radius: 12px; }
+h1 { font-size: 26px; margin: 0 0 8px; }
+h2 { font-size: 19px; margin: 32px 0 12px; padding-bottom: 6px;
+  border-bottom: 1px solid #eaeef2; }
+table { border-collapse: collapse; width: 100%; margin: 12px 0 20px; font-size: 14px; }
+th, td { border: 1px solid #d0d7de; padding: 6px 10px; text-align: left; }
+th { background: #f6f8fa; font-weight: 600; }
+code { background: #f6f8fa; padding: 1px 5px; border-radius: 4px; font-size: 13px; }
+blockquote { margin: 12px 0; padding: 10px 16px; border-left: 4px solid #bf8700;
+  background: #f6f8fa; color: #424a53; }
+.grade { display: inline-block; padding: 2px 12px; border-radius: 999px;
+  background: #bf8700; color: #fff; font-weight: 600; letter-spacing: .02em; }
+figure { margin: 16px 0 24px; }
+figcaption { font-size: 13px; color: #57606a; }
+ul { padding-left: 22px; }
+</style>
+</head>
+<body>
+<main>
+<div class="grade">C</div>
+<h1>Judge reliability card</h1>
+<p><strong>Source:</strong> <code>demo.jsonl</code> <strong>Data:</strong> 220 judgments, 160 distinct items, 1 judge model(s) <strong>Models:</strong> demo-judge-v1</p>
+<h2>Verdict: C</h2>
+<blockquote>Weak evidence. Fine for triage, not for gating or reporting quality.</blockquote>
+<p>Score: 4. Reasons:</p>
+<ul><li>chance-corrected agreement is substantial (0.77)</li><li>sample size is adequate (160 items)</li><li>the kappa interval is wide (0.66-0.85)</li><li>confidence scores are roughly calibrated (ECE 0.099)</li><li>repeated runs are unstable (20% of items changed verdict)</li><li>verdicts change in 20% of A/B swaps</li><li>no meaningful length bias</li></ul>
+<h2>What was measured</h2>
+<table><thead><tr><th>question</th><th>status</th></tr></thead><tbody><tr><td>agreement with humans</td><td>measured</td></tr><tr><td>confidence calibration</td><td>measured</td></tr><tr><td>stability across runs</td><td>measured</td></tr><tr><td>position bias</td><td>measured</td></tr><tr><td>length bias</td><td>measured</td></tr></tbody></table>
+<h2>Label distribution</h2>
+<table><thead><tr><th>label</th><th>judge count</th><th>human count</th></tr></thead><tbody><tr><td>fail</td><td>73</td><td>65</td></tr><tr><td>pass</td><td>107</td><td>115</td></tr></tbody></table>
+<h2>Agreement with humans</h2>
+<table><thead><tr><th>metric</th><th>value</th></tr></thead><tbody><tr><td>paired judgments</td><td>180</td></tr><tr><td>raw accuracy</td><td>88.9%</td></tr><tr><td>Cohen&#x27;s kappa</td><td>0.765</td></tr><tr><td>kappa 95% bootstrap interval</td><td>0.664 to 0.853</td></tr></tbody></table>
+<p>Confusion matrix (rows: human, columns: judge):</p>
+<table><thead><tr><th>human \ judge</th><th>fail</th><th>pass</th></tr></thead><tbody><tr><td><strong>fail</strong></td><td>59</td><td>6</td></tr><tr><td><strong>pass</strong></td><td>14</td><td>101</td></tr></tbody></table>
+<table><thead><tr><th>label</th><th>precision</th><th>recall</th><th>support</th></tr></thead><tbody><tr><td>fail</td><td>0.81</td><td>0.91</td><td>65</td></tr><tr><td>pass</td><td>0.94</td><td>0.88</td><td>115</td></tr></tbody></table>
+<h2>Calibration of confidence scores</h2>
+<table><thead><tr><th>metric</th><th>value</th></tr></thead><tbody><tr><td>scored judgments</td><td>180</td></tr><tr><td>expected calibration error</td><td>0.099</td></tr><tr><td>Brier score</td><td>0.150</td></tr><tr><td>best threshold</td><td>0.49 (accuracy 0.828, F1 0.867)</td></tr></tbody></table>
+<table><thead><tr><th>confidence bin</th><th>n</th><th>mean confidence</th><th>observed accuracy</th><th>gap</th></tr></thead><tbody><tr><td>0.10-0.20</td><td>11</td><td>0.165</td><td>0.182</td><td>+0.017</td></tr><tr><td>0.20-0.30</td><td>8</td><td>0.262</td><td>0.250</td><td>-0.012</td></tr><tr><td>0.30-0.40</td><td>22</td><td>0.354</td><td>0.182</td><td>-0.173</td></tr><tr><td>0.40-0.50</td><td>23</td><td>0.449</td><td>0.304</td><td>-0.145</td></tr><tr><td>0.50-0.60</td><td>11</td><td>0.554</td><td>0.818</td><td>+0.264</td></tr><tr><td>0.60-0.70</td><td>15</td><td>0.646</td><td>0.733</td><td>+0.087</td></tr><tr><td>0.70-0.80</td><td>39</td><td>0.752</td><td>0.846</td><td>+0.094</td></tr><tr><td>0.80-0.90</td><td>36</td><td>0.843</td><td>0.889</td><td>+0.046</td></tr><tr><td>0.90-1.00</td><td>15</td><td>0.944</td><td>1.000</td><td>+0.056</td></tr></tbody></table>
+<h2>Stability across repeated runs</h2>
+<table><thead><tr><th>metric</th><th>value</th></tr></thead><tbody><tr><td>items with repeated runs</td><td>30</td></tr><tr><td>judgments compared</td><td>60</td></tr><tr><td>items whose verdict changed</td><td>20.0%</td></tr><tr><td>judgments matching the item&#x27;s modal verdict</td><td>90.0%</td></tr></tbody></table>
+<p>Most unstable items:</p>
+<ul><li><code>item-007</code>: fail, pass</li><li><code>item-008</code>: pass, fail</li><li><code>item-010</code>: fail, pass</li><li><code>item-016</code>: pass, fail</li><li><code>item-024</code>: fail, pass</li></ul>
+<h2>Position bias</h2>
+<table><thead><tr><th>metric</th><th>value</th></tr></thead><tbody><tr><td>pairs judged in both orders</td><td>20</td></tr><tr><td>judgments that chose slot A</td><td>60.0%</td></tr><tr><td>choice changed when the order was swapped</td><td>20.0% (4 of 20)</td></tr></tbody></table>
+<h2>Length bias</h2>
+<table><thead><tr><th>metric</th><th>value</th></tr></thead><tbody><tr><td>method</td><td>spearman(length, score)</td></tr><tr><td>n</td><td>180</td></tr><tr><td>correlation with length</td><td>0.047</td></tr></tbody></table>
+<h2>Data warnings</h2>
+<ul><li>40 of 220 records have no human label and are excluded from agreement</li><li>only 180 of 220 records carry a probability score</li></ul>
+<h2>What to do next</h2>
+<ul><li>Reduce sampling temperature or use majority voting over three runs.</li><li>Randomise or double-run A/B order and average the two verdicts.</li></ul>
+<p>Generated by <a href="https://github.com/Coisini-cyber/judgecal">judgecal</a>. Numbers describe this dataset, not the judge in general.</p>
+<figure><svg viewBox="0 0 340 260" width="340" height="260" role="img" aria-label="Reliability diagram"><rect x="0" y="0" width="340" height="260" fill="#ffffff"/><line x1="80.0" y1="214.0" x2="80.0" y2="34.0" stroke="#eaeef2" stroke-width="1"/><line x1="80.0" y1="214.0" x2="260.0" y2="214.0" stroke="#eaeef2" stroke-width="1"/><line x1="125.0" y1="214.0" x2="125.0" y2="34.0" stroke="#eaeef2" stroke-width="1"/><line x1="80.0" y1="169.0" x2="260.0" y2="169.0" stroke="#eaeef2" stroke-width="1"/><line x1="170.0" y1="214.0" x2="170.0" y2="34.0" stroke="#eaeef2" stroke-width="1"/><line x1="80.0" y1="124.0" x2="260.0" y2="124.0" stroke="#eaeef2" stroke-width="1"/><line x1="215.0" y1="214.0" x2="215.0" y2="34.0" stroke="#eaeef2" stroke-width="1"/><line x1="80.0" y1="79.0" x2="260.0" y2="79.0" stroke="#eaeef2" stroke-width="1"/><line x1="260.0" y1="214.0" x2="260.0" y2="34.0" stroke="#eaeef2" stroke-width="1"/><line x1="80.0" y1="34.0" x2="260.0" y2="34.0" stroke="#eaeef2" stroke-width="1"/><rect x="80.0" y="34.0" width="180" height="180" fill="none" stroke="#d0d7de" stroke-width="1"/><line x1="80.0" y1="214.0" x2="260.0" y2="34.0" stroke="#8c959f" stroke-width="1" stroke-dasharray="4 4"/><polyline points="109.6,181.3 127.2,169.0 143.8,181.3 160.9,159.2 179.8,66.7 196.3,82.0 215.3,61.7 231.7,54.0 250.0,34.0" fill="none" stroke="#0969da" stroke-width="2"/><circle cx="109.6" cy="181.3" r="6.3" fill="#0969da" fill-opacity="0.75"/><circle cx="127.2" cy="169.0" r="5.8" fill="#0969da" fill-opacity="0.75"/><circle cx="143.8" cy="181.3" r="7.7" fill="#0969da" fill-opacity="0.75"/><circle cx="160.9" cy="159.2" r="7.8" fill="#0969da" fill-opacity="0.75"/><circle cx="179.8" cy="66.7" r="6.3" fill="#0969da" fill-opacity="0.75"/><circle cx="196.3" cy="82.0" r="6.9" fill="#0969da" fill-opacity="0.75"/><circle cx="215.3" cy="61.7" r="9.0" fill="#0969da" fill-opacity="0.75"/><circle cx="231.7" cy="54.0" r="9.0" fill="#0969da" fill-opacity="0.75"/><circle cx="250.0" cy="34.0" r="6.9" fill="#0969da" fill-opacity="0.75"/><text x="170.0" y="236.0" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#57606a">confidence</text><text x="58.0" y="124.0" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#57606a" transform="rotate(-90 58.0 124.0)">accuracy</text></svg><figcaption>Reliability diagram: a perfectly calibrated judge
+follows the dashed diagonal. Bubble size is the number of judgments in the bin.</figcaption></figure>
+</main>
+</body>
+</html>

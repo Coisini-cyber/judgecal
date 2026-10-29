@@ -1,0 +1,10 @@
+{"id": "q-001", "judge": "pass", "human": "pass", "score": 0.91, "model": "gpt-judge", "output_len": 412}
+{"id": "q-002", "judge": "fail", "human": "pass", "score": 0.22, "model": "gpt-judge", "output_len": 188}
+{"id": "q-003", "judge": "pass", "human": "pass", "score": 0.84, "model": "gpt-judge", "output_len": 302}
+{"id": "q-004", "judge": "pass", "human": "fail", "score": 0.67, "model": "gpt-judge", "output_len": 517}
+{"id": "q-005", "judge": "fail", "human": "fail", "score": 0.12, "model": "gpt-judge", "output_len": 96}
+{"id": "q-006", "judge": "pass", "human": "pass", "score": 0.78, "model": "gpt-judge", "output_len": 265}
+{"id": "q-001", "judge": "pass", "human": "pass", "score": 0.88, "model": "gpt-judge", "run": 2, "output_len": 412}
+{"id": "q-002", "judge": "pass", "human": "pass", "score": 0.41, "model": "gpt-judge", "run": 2, "output_len": 188}
+{"id": "pair-01-order1", "pair_id": "pair-01", "variant": "a", "judge": "a", "model": "gpt-judge"}
+{"id": "pair-01-order2", "pair_id": "pair-01", "variant": "b", "judge": "b", "model": "gpt-judge"}
