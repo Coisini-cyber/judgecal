@@ -188,7 +188,7 @@ python -m unittest discover -s tests -v
 python -m compileall -q judgecal
 ```
 
-115 tests, no third-party packages, Python 3.9+.
+117 tests, no third-party packages, Python 3.9+.
 
 ## License
 
