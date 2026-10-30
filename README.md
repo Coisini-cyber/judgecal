@@ -1,5 +1,7 @@
 # judgecal
 
+[![ci](https://github.com/Coisini-cyber/judgecal/actions/workflows/ci.yml/badge.svg)](https://github.com/Coisini-cyber/judgecal/actions/workflows/ci.yml)
+
 **Reliability cards for LLM judges.**
 
 Your eval suite says the new prompt is 12% better. Your judge is an LLM. Has
